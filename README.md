@@ -10,13 +10,9 @@ gem 'resque-kawai'
 
     rails generate rq:add bla
 
-And add to config/application.rb
-
-    config.autoload_paths += %W( #{config.root}/app/models/resque )
-    
 Consumer
 --------
-app/models/resque/rq_bla.rb
+app/workers/rq_bla.rb
 
 ``` ruby
 class RqBla < RqQueue
@@ -41,7 +37,7 @@ Insert event into queue like this:
     RqBla.add_event(:some_method2, some_x)
     
 
-Logger for this consumer: Rails.root/log/resque/bla.log
+Logger for this consumer: Rails.root/log/workers/bla.log
 
 
  
