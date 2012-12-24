@@ -73,7 +73,12 @@ describe RqQueue do
     Resque.should_receive(:enqueue_in).with(10, RqTest, 'super', [1, 2, 3])
     RqTest.enqueue_in(10, :super, 1, 2, 3)
   end
-  
+
+  it "remove delayed" do
+    Resque.should_receive(:remove_delayed).with(RqTest, 'super', [1, 2, 3])
+    RqTest.remove_delayed(:super, 1, 2, 3)
+  end
+
   it "add event in" do
     Resque.should_receive(:enqueue_in).with(10, RqTest, 'super', [1, 2, 3])
     RqTest.add_event_in(10, :super, 1, 2, 3)
