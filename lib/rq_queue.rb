@@ -51,8 +51,12 @@ class RqQueue
     add_event_in(times, method_name, *args)
   end
 
-  
-  
+  # For resque-scheduler
+  def self.remove_delayed(method_name, *args)
+    Resque.remove_delayed(self, method_name.to_s, args)
+  end
+
+
   def self.logger
     @logger ||= Logger.new(logger_path).tap do |logger|
       logger.formatter = lambda { |s, d, p, m| "#{d.strftime("%d.%m.%Y %H:%M:%S")} #{m}\n" }
