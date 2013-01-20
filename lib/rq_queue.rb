@@ -98,6 +98,8 @@ class RqQueue
     def logger_path
       @logger_path ||= begin
         "#{Rails.root}/log/workers/#{extract_queue_name}.log"
+      rescue
+        nil
       end
     end
 
